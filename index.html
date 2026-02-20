@@ -12,7 +12,7 @@
 <body>
 
 <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="bubbles"></div>
@@ -21,46 +21,45 @@
 <section class="container">
 
 <h1 class="title">LOS INVITO A MI<br>CUMPLEAÑOS Nº1</h1>
-<a id="calendarBtn"
-   class="calendarBtn"
-   target="_blank"
-   href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&details=Te+esperamos+en+Calle+Costa+Rica+2135,+Libertad,+Merlo.+%0A%0AMaps:+https://www.google.com/maps/place/Costa+Rica+2135,+B1716+Merlo,+Provincia+de+Buenos+Aires/@-34.7005196,-58.6848476&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires">
-Agregar a mi Google Calendar 📅
-</a>
 
 <div id="countdown" class="countdown"></div>
 
 <div class="submarine-wrapper">
-    <img src="submarino.png" id="submarine" class="submarine" alt="Submarino">
+<img src="submarino.png" id="submarine" class="submarine">
 </div>
 
 <div class="info">
-    <p>Calle Costa Rica 2135, Libertad, Merlo, Buenos Aires</p>
-    <p>15/03/2026</p>
-    <p>De 16:00 hs a 19:00 hs</p>
-    <p class="extra">Nos gustaría que seas parte de este hermoso momento.</p>
+<p>📍 Calle Costa Rica 2135, Libertad, Merlo, Buenos Aires</p>
+<p>📅 15/03/2026</p>
+<p>⏰ De 16:00 hs a 19:00 hs</p>
+<p class="extra">Nos gustaría que seas parte de este hermoso momento.</p>
+</div>
+
+<div class="buttons">
+<a href="https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires"
+target="_blank" class="btn-secondary">📍 Cómo llegar</a>
 </div>
 
 <form id="inviteForm" class="form">
-    <input type="text" id="nombre" placeholder="Nombre" required>
-    <input type="text" id="apellido" placeholder="Apellido" required>
 
-    <select id="tipo" required>
-        <option value="">Adulto o Niño</option>
-        <option value="Adulto">Adulto</option>
-        <option value="Niño">Niño</option>
-    </select>
+<input type="text" id="nombre" placeholder="Nombre" required>
+<input type="text" id="apellido" placeholder="Apellido" required>
 
-    <textarea id="mensajeExtra" placeholder="Acá es para escribir una dedicatoria."></textarea>
+<select id="tipo" required>
+<option value="">Adulto o Niño</option>
+<option value="Adulto">Adulto</option>
+<option value="Niño">Niño</option>
+</select>
 
-    <button type="submit" class="btn">
-        Enviar Subite al submarino 🚀
-    </button>
+<textarea id="mensajeExtra" placeholder="Escribí una dedicatoria 💛"></textarea>
+
+<button type="submit" class="btn">
+Subite al submarino 🚀
+</button>
+
 </form>
 
-<div id="thankYou" class="thankYou hidden"></div>
-
-
+<div id="thankYou" class="thankYou"></div>
 
 <h2 class="magno">Magno</h2>
 

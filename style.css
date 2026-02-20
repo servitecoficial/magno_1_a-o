@@ -1,138 +1,131 @@
 body{
 margin:0;
 font-family:'Fredoka',sans-serif;
-background:linear-gradient(#001f4d,#003366);
+background:linear-gradient(to bottom,#001f3f,#002b5c,#001f3f);
 color:white;
 text-align:center;
-overflow-x:hidden;
+overflow:hidden;
+}
+
+.container{
+padding:20px;
+position:relative;
+z-index:2;
 }
 
 .title{
 font-family:'Luckiest Guy',cursive;
-font-size:3rem;
+font-size:2rem;
 color:#FFD700;
-text-shadow:4px 4px red;
-animation:pulse 2s infinite;
+margin-top:20px;
+letter-spacing:2px;
 }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.05)}
-100%{transform:scale(1)}
+.countdown{
+font-size:1.4rem;
+margin:15px 0;
+color:#00E1FF;
+font-weight:bold;
 }
 
-.container{
-padding:30px 15px;
+.info{
+margin:20px 0;
+line-height:1.6;
 }
 
 .submarine{
-width:260px;
-animation:float 3s ease-in-out infinite;
-transition:2s;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-15px)}
-100%{transform:translateY(0)}
+width:200px;
+transition:2.5s ease-in-out;
 }
 
 .submarine.dive{
-transform:translateY(400px) scale(.8);
+transform:translateY(400px) scale(0.8);
 opacity:0;
 }
 
 .form{
 display:flex;
 flex-direction:column;
-gap:15px;
-align-items:center;
-margin-top:20px;
+gap:12px;
+max-width:320px;
+margin:auto;
 }
 
-.form input,.form select,.form textarea{
-width:90%;
-max-width:400px;
+input,select,textarea{
 padding:12px;
-border-radius:20px;
+border-radius:12px;
 border:none;
 font-size:1rem;
 }
 
 .btn{
-background:#FFD700;
-padding:12px 30px;
-border-radius:30px;
+padding:14px;
 border:none;
+border-radius:25px;
+background:#FFD700;
 font-weight:bold;
 cursor:pointer;
+transition:0.3s;
 }
 
-.magno{
-font-size:3rem;
-color:#FFD700;
-margin-top:30px;
+.btn:hover{
+background:#ffc400;
+transform:scale(1.05);
 }
 
-.countdown{
-margin:10px 0;
-color:#FFD700;
-}
-
-.bubbles span{
-position:absolute;
-bottom:-100px;
-width:15px;
-height:15px;
-background:rgba(255,255,255,0.4);
-border-radius:50%;
-animation:rise 8s linear infinite;
-}
-
-@keyframes rise{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
-}
-
-.balloons span{
-position:absolute;
-bottom:-120px;
-width:35px;
-height:45px;
-border-radius:50%;
-animation:balloonUp 6s linear infinite;
-}
-
-@keyframes balloonUp{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
+.btn-secondary{
+display:inline-block;
+margin-bottom:15px;
+padding:10px 20px;
+background:#00E1FF;
+color:#000;
+border-radius:20px;
+text-decoration:none;
+font-weight:bold;
 }
 
 .thankYou{
 position:fixed;
-bottom:-200px;
+bottom:-250px;
 left:50%;
 transform:translateX(-50%);
 background:rgba(0,0,80,0.95);
-padding:25px;
+padding:30px;
 border-radius:25px;
 font-size:1.2rem;
 color:#FFD700;
 transition:1.5s;
+z-index:999;
 max-width:90%;
 }
 
 .thankYou.show{
-bottom:40%;
+bottom:35%;
 }
 
-.calendarBtn{
-display:inline-block;
-margin-top:25px;
-padding:12px 25px;
-background:#FFD700;
-color:#000;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
+/* Burbujas */
+.bubbles span{
+position:absolute;
+bottom:-100px;
+background:rgba(255,255,255,0.4);
+border-radius:50%;
+animation:rise linear infinite;
+}
+
+@keyframes rise{
+to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* Globos */
+.balloons span{
+position:absolute;
+bottom:-150px;
+width:45px;
+height:60px;
+border-radius:50%;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+to{transform:translateY(-130vh);}
 }

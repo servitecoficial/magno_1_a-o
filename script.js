@@ -1,39 +1,48 @@
-const music=document.getElementById("bgMusic");
+// Música
+const music = document.getElementById("bgMusic");
+document.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-function startMusic(){
-music.play().catch(()=>{});
-document.removeEventListener("click",startMusic);
-}
-document.addEventListener("click",startMusic);
+// Cuenta regresiva
+const eventDate = new Date("March 15, 2026 16:00:00").getTime();
+const countdown = document.getElementById("countdown");
 
-// Burbujas
-const bubbleContainer=document.querySelector('.bubbles');
-for(let i=0;i<30;i++){
+setInterval(()=>{
+const now = new Date().getTime();
+const distance = eventDate - now;
+
+const days = Math.floor(distance / (1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+countdown.innerHTML = `⏳ Faltan ${days} días ${hours} hs ${minutes} min`;
+},1000);
+
+// Burbujas profesionales
+const bubbleContainer = document.querySelector('.bubbles');
+for(let i=0;i<20;i++){
 let bubble=document.createElement('span');
+let size=Math.random()*20+10;
+bubble.style.width=size+"px";
+bubble.style.height=size+"px";
 bubble.style.left=Math.random()*100+"%";
-bubble.style.animationDuration=(5+Math.random()*5)+"s";
+bubble.style.animationDuration=(Math.random()*5+5)+"s";
 bubbleContainer.appendChild(bubble);
 }
 
-// Globos
-const balloonContainer=document.querySelector('.balloons');
-for(let i=0;i<10;i++){
+// Globos organizados
+const balloonContainer = document.querySelector('.balloons');
+for(let i=0;i<8;i++){
 let balloon=document.createElement('span');
-balloon.style.left=Math.random()*100+"%";
-balloon.style.background=["#FFD700","#FF4D4D","#00E1FF","#7CFF00"][Math.floor(Math.random()*4)];
+balloon.style.left=(10 + i*10)+"%";
+balloon.style.background=["#FFD700","#FF4D4D","#00E1FF","#7CFF00"][i%4];
+balloon.style.animationDuration=(Math.random()*4+6)+"s";
 balloonContainer.appendChild(balloon);
 }
 
-// Countdown
-const countdown=document.getElementById("countdown");
-const eventDate=new Date("March 15, 2026 16:00:00").getTime();
+// Links
+const calendarLink="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
 
-setInterval(()=>{
-const now=new Date().getTime();
-const distance=eventDate-now;
-const days=Math.floor(distance/(1000*60*60*24));
-countdown.innerHTML=`Faltan ${days} días para el gran día 🎉`;
-},1000);
+const mapsLink="https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires";
 
 // Formulario
 document.getElementById("inviteForm").addEventListener("submit",function(e){
@@ -49,37 +58,32 @@ const thankYou=document.getElementById("thankYou");
 
 submarine.classList.add("dive");
 
-// Google Forms
-const formData=new URLSearchParams();
-formData.append("entry.810720251",nombre);
-formData.append("entry.1257370811",apellido);
-formData.append("entry.517323634",tipo);
-formData.append("entry.346124039",mensajeExtra);
-
-fetch("https://docs.google.com/forms/d/e/1FAIpQLSfLxa7HQTb9wvG21ety1IHTsXLxhl7lnH1qUr2MiTr-rROD0g/formResponse",{
-method:"POST",
-mode:"no-cors",
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-body:formData.toString()
-});
-
 setTimeout(()=>{
-thankYou.innerHTML=`Gracias ${nombre}, nos alegra mucho que seas parte de este día tan importante para nosotros.`;
-thankYou.classList.remove("hidden");
+thankYou.innerHTML=`✨ Gracias ${nombre} ✨<br>Nos alegra que seas parte de este momento tan especial 💛`;
 thankYou.classList.add("show");
 },1000);
 
 setTimeout(()=>{
-const mensaje=`Confirmación cumpleaños de Magno 🎉
 
-Nombre: ${nombre}
-Apellido: ${apellido}
-Tipo: ${tipo}
+const mensaje=
+`🎉 *CONFIRMACIÓN CUMPLEAÑOS DE MAGNO* 🎉
 
-Dedicatoria:
-${mensajeExtra}`;
+👤 *Nombre:* ${nombre}
+👤 *Apellido:* ${apellido}
+🎈 *Invitado:* ${tipo}
+
+💌 ${mensajeExtra}
+
+✨ *En este link vas a poder agendar mi cumple en tu calendario:*  
+${calendarLink}
+
+📍 *Acá está el link para que puedas encontrar la dirección de mi casa más rápido y puedas llegar a festejar con nosotros:*  
+${mapsLink}
+
+💛 *Quiero que seas parte de este momento tan especial para mis papis como para mí. ¡TE ESPERO!* 🎂🎊`;
 
 window.location.href=`https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
-},4000);
+
+},4500);
 
 });
