@@ -1,0 +1,109 @@
+body {
+margin:0;
+font-family:'Fredoka',sans-serif;
+background:linear-gradient(#001f4d,#003366);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+.title{
+font-family:'Luckiest Guy',cursive;
+font-size:3rem;
+color:#FFD700;
+text-shadow:4px 4px red;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+.submarine{
+width:280px;
+animation: float 3s ease-in-out infinite;
+transition:2s;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+.submarine.dive{
+transform:translateY(400px) scale(.8);
+opacity:0;
+}
+
+.form{
+display:flex;
+flex-direction:column;
+gap:15px;
+align-items:center;
+margin-top:20px;
+}
+
+.form input,.form select,.form textarea{
+width:90%;
+max-width:400px;
+padding:12px;
+border-radius:20px;
+border:none;
+}
+
+.btn{
+background:#FFD700;
+padding:12px 30px;
+border-radius:30px;
+border:none;
+font-weight:bold;
+cursor:pointer;
+}
+
+.magno{
+font-size:3rem;
+color:#FFD700;
+margin-top:30px;
+}
+
+.bubbles span{
+position:absolute;
+bottom:-100px;
+width:20px;
+height:20px;
+background:rgba(255,255,255,0.4);
+border-radius:50%;
+animation:rise 10s infinite ease-in;
+}
+
+@keyframes rise{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+.loader{
+border:6px solid #fff;
+border-top:6px solid #FFD700;
+border-radius:50%;
+width:50px;
+height:50px;
+animation:spin 1s linear infinite;
+margin:20px auto;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg)}
+}
+
+.hidden{
+display:none;
+}
+
+.countdown{
+margin:15px 0;
+font-size:1.2rem;
+color:#FFD700;
+}

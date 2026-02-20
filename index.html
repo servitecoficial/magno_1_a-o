@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cumpleaños Nº1 - Magno</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div class="bubbles"></div>
+
+<section class="container">
+
+<h1 class="title">LOS INVITO A MI<br>CUMPLEAÑOS Nº1</h1>
+
+<div id="countdown" class="countdown"></div>
+
+<div class="submarine-wrapper">
+    <img src="submarino.png" id="submarine" class="submarine">
+</div>
+
+<div class="info">
+    <p>En Calle Costa Rica 2135, Libertad, Merlo</p>
+    <p>El día 15/03/2026</p>
+    <p>De 16:00 hs a 19:00 hs</p>
+    <p class="extra">Nos gustaría que seas parte de este hermoso momento.</p>
+</div>
+
+<form id="inviteForm" class="form">
+
+<input type="text" id="nombre" placeholder="Nombre" required>
+<input type="text" id="apellido" placeholder="Apellido" required>
+
+<select id="tipo" required>
+<option value="">Adulto o Niño</option>
+<option value="Adulto">Adulto</option>
+<option value="Niño">Niño</option>
+</select>
+
+<textarea id="mensajeExtra" placeholder="Acá es para escribir una dedicatoria."></textarea>
+
+<button type="submit" class="btn">Subite al submarino 🚀</button>
+
+</form>
+
+<div id="loader" class="loader hidden"></div>
+
+<h2 class="magno">Magno</h2>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
