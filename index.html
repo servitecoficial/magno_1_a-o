@@ -4,52 +4,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cumpleaños Nº1 - Magno</title>
-<link rel="stylesheet" href="style.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<audio id="bgMusic" autoplay loop>
-    <source src="music.mp3" type="audio/mp3">
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="bubbles"></div>
+<div class="balloons"></div>
 
 <section class="container">
 
 <h1 class="title">LOS INVITO A MI<br>CUMPLEAÑOS Nº1</h1>
+<a id="calendarBtn"
+   class="calendarBtn"
+   target="_blank"
+   href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&details=Te+esperamos+en+Calle+Costa+Rica+2135,+Libertad,+Merlo.+%0A%0AMaps:+https://www.google.com/maps/place/Costa+Rica+2135,+B1716+Merlo,+Provincia+de+Buenos+Aires/@-34.7005196,-58.6848476&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires">
+Agregar a mi Google Calendar 📅
+</a>
 
 <div id="countdown" class="countdown"></div>
 
 <div class="submarine-wrapper">
-    <img src="submarino.png" id="submarine" class="submarine">
+    <img src="submarino.png" id="submarine" class="submarine" alt="Submarino">
 </div>
 
 <div class="info">
-    <p>En Calle Costa Rica 2135, Libertad, Merlo</p>
-    <p>El día 15/03/2026</p>
+    <p>Calle Costa Rica 2135, Libertad, Merlo, Buenos Aires</p>
+    <p>15/03/2026</p>
     <p>De 16:00 hs a 19:00 hs</p>
     <p class="extra">Nos gustaría que seas parte de este hermoso momento.</p>
 </div>
 
 <form id="inviteForm" class="form">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="apellido" placeholder="Apellido" required>
 
-<input type="text" id="nombre" placeholder="Nombre" required>
-<input type="text" id="apellido" placeholder="Apellido" required>
+    <select id="tipo" required>
+        <option value="">Adulto o Niño</option>
+        <option value="Adulto">Adulto</option>
+        <option value="Niño">Niño</option>
+    </select>
 
-<select id="tipo" required>
-<option value="">Adulto o Niño</option>
-<option value="Adulto">Adulto</option>
-<option value="Niño">Niño</option>
-</select>
+    <textarea id="mensajeExtra" placeholder="Acá es para escribir una dedicatoria."></textarea>
 
-<textarea id="mensajeExtra" placeholder="Acá es para escribir una dedicatoria."></textarea>
-
-<button type="submit" class="btn">Subite al submarino 🚀</button>
-
+    <button type="submit" class="btn">
+        Enviar Subite al submarino 🚀
+    </button>
 </form>
 
-<div id="loader" class="loader hidden"></div>
+<div id="thankYou" class="thankYou hidden"></div>
+
+
 
 <h2 class="magno">Magno</h2>
 
