@@ -138,7 +138,7 @@ if (inviteForm) {
       setTimeout(() => {
         const mensaje = buildWhatsappMessage(nombre, apellido, tipo, mensajeExtra);
         window.location.href = `https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
-      }, 4000);
+      }, 2000);
     }, 1200);
   });
 }
