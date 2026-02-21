@@ -1,111 +1,122 @@
-// 🎵 Música automática
+// Musica automatica
 const music = document.getElementById("bgMusic");
-document.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
+document.addEventListener(
+  "click",
+  () => {
+    music.play().catch(() => {});
+  },
+  { once: true }
+);
 
-// 🎬 Cuenta regresiva
-const eventDate = new Date("March 15, 2026 16:00:00").getTime();
+// Cuenta regresiva (actualiza por minuto para evitar saltos de scroll en moviles)
+const eventDate = new Date("2026-03-15T16:00:00").getTime();
 const countdown = document.getElementById("countdown");
 
-setInterval(()=>{
-const now = new Date().getTime();
-const distance = eventDate - now;
+function updateCountdown() {
+  if (!countdown) return;
 
-const days = Math.floor(distance / (1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+  const now = Date.now();
+  const distance = eventDate - now;
 
-countdown.innerHTML = `⏳ Faltan ${days} días ${hours} hs ${minutes} min`;
-},1000);
+  if (distance <= 0) {
+    countdown.textContent = "El cumple ya comenzo.";
+    return;
+  }
 
-// 🌊 OLAS dinámicas tipo película
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+  countdown.textContent = `Faltan ${days} dias ${String(hours).padStart(2, "0")} hs ${String(minutes).padStart(2, "0")} min`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// Olas dinamicas
 const body = document.body;
-body.insertAdjacentHTML("beforeend", `
-<div class="waves"></div>
-`);
-
-// 🫧 Burbujas 3D
-const bubbleContainer = document.querySelector('.bubbles');
-for(let i=0;i<30;i++){
-let bubble=document.createElement('span');
-let size=Math.random()*25+10;
-bubble.style.width=size+"px";
-bubble.style.height=size+"px";
-bubble.style.left=Math.random()*100+"%";
-bubble.style.animationDuration=(Math.random()*6+6)+"s";
-bubbleContainer.appendChild(bubble);
+if (!document.querySelector(".waves")) {
+  body.insertAdjacentHTML("beforeend", '<div class="waves"></div>');
 }
 
-// 🎈 Globos organizados
-const balloonContainer = document.querySelector('.balloons');
-for(let i=0;i<10;i++){
-let balloon=document.createElement('span');
-balloon.style.left=(5 + i*9)+"%";
-balloon.style.background=["#FFD700","#FF4D4D","#00E1FF","#7CFF00"][i%4];
-balloon.style.animationDuration=(Math.random()*4+7)+"s";
-balloonContainer.appendChild(balloon);
+// Burbujas
+const bubbleContainer = document.querySelector(".bubbles");
+if (bubbleContainer) {
+  for (let i = 0; i < 18; i++) {
+    const bubble = document.createElement("span");
+    const size = Math.random() * 25 + 10;
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
+    bubble.style.left = Math.random() * 100 + "%";
+    bubble.style.animationDuration = Math.random() * 6 + 6 + "s";
+    bubbleContainer.appendChild(bubble);
+  }
 }
 
-// 🔗 LINKS
-const calendarLink="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
+// Globos
+const balloonContainer = document.querySelector(".balloons");
+if (balloonContainer) {
+  for (let i = 0; i < 8; i++) {
+    const balloon = document.createElement("span");
+    balloon.style.left = 8 + i * 11 + "%";
+    balloon.style.background = ["#FFD700", "#FF4D4D", "#00E1FF", "#7CFF00"][i % 4];
+    balloon.style.animationDuration = Math.random() * 4 + 7 + "s";
+    balloonContainer.appendChild(balloon);
+  }
+}
 
-const mapsLink="https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires";
+const calendarLink =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleanos+N1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
 
-// 📝 FORMULARIO + ENVÍO A GOOGLE FORMS
-document.getElementById("inviteForm").addEventListener("submit",function(e){
-e.preventDefault();
+const mapsLink = "https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires";
 
-const nombre=document.getElementById("nombre").value.trim();
-const apellido=document.getElementById("apellido").value.trim();
-const tipo=document.getElementById("tipo").value;
-const mensajeExtra=document.getElementById("mensajeExtra").value.trim();
+// Formulario
+const inviteForm = document.getElementById("inviteForm");
+if (inviteForm) {
+  inviteForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-const submarine=document.getElementById("submarine");
-const thankYou=document.getElementById("thankYou");
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const tipo = document.getElementById("tipo").value;
+    const mensajeExtra = document.getElementById("mensajeExtra").value.trim();
 
-submarine.classList.add("dive");
+    const submarine = document.getElementById("submarine");
+    const thankYou = document.getElementById("thankYou");
 
-// 🔥 ENVÍO REAL A TU GOOGLE FORMS
-const formData=new URLSearchParams();
-formData.append("entry.810720251",nombre);
-formData.append("entry.1257370811",apellido);
-formData.append("entry.517323634",tipo);
-formData.append("entry.346124039",mensajeExtra);
+    if (submarine) submarine.classList.add("dive");
 
-fetch("https://docs.google.com/forms/d/e/1FAIpQLSfLxa7HQTb9wvG21ety1IHTsXLxhl7lnH1qUr2MiTr-rROD0g/formResponse",{
-method:"POST",
-mode:"no-cors",
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-body:formData.toString()
-});
+    const formData = new URLSearchParams();
+    formData.append("entry.810720251", nombre);
+    formData.append("entry.1257370811", apellido);
+    formData.append("entry.517323634", tipo);
+    formData.append("entry.346124039", mensajeExtra);
 
-// 🎬 Animación estilo Pixar
-setTimeout(()=>{
-thankYou.innerHTML=`✨ Gracias ${nombre} ✨<br><br>Nos emociona que seas parte de este momento tan especial 💛`;
-thankYou.classList.add("show");
-},1200);
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfLxa7HQTb9wvG21ety1IHTsXLxhl7lnH1qUr2MiTr-rROD0g/formResponse", {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData.toString()
+    });
 
-// 📲 WhatsApp profesional
-setTimeout(()=>{
+    setTimeout(() => {
+      if (!thankYou) return;
+      thankYou.innerHTML = `Gracias ${nombre}.<br><br>Nos emociona que seas parte de este momento tan especial.`;
+      thankYou.classList.add("show");
+    }, 1200);
 
-const mensaje=
-`🎉 *CONFIRMACIÓN CUMPLEAÑOS DE MAGNO* 🎉
+    setTimeout(() => {
+      const mensaje =
+        `*CONFIRMACION CUMPLEANOS DE MAGNO*\n\n` +
+        `Nombre: ${nombre}\n` +
+        `Apellido: ${apellido}\n` +
+        `Invitado: ${tipo}\n\n` +
+        `${mensajeExtra}\n\n` +
+        `Agenda: ${calendarLink}\n\n` +
+        `Direccion: ${mapsLink}\n\n` +
+        `Te esperamos.`;
 
-👤 *Nombre:* ${nombre}
-👤 *Apellido:* ${apellido}
-🎈 *Invitado:* ${tipo}
-
-💌 ${mensajeExtra}
-
-✨ *En este link vas a poder agendar mi cumple en tu calendario:*  
-${calendarLink}
-
-📍 *Acá está el link para que puedas encontrar la dirección de mi casa más rápido y puedas llegar a festejar con nosotros:*  
-${mapsLink}
-
-💛 *Quiero que seas parte de este momento tan especial para mis papis como para mí. ¡TE ESPERO!* 🎂🎊`;
-
-window.location.href=`https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
-
-},4500);
-
-});
+      window.location.href = `https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
+    }, 4500);
+  });
+}

@@ -33,6 +33,7 @@ position:relative;
 line-height:1.4;
 min-height:100vh;
 min-height:100dvh;
+overflow-anchor:none;
 }
 
 /* CONTENEDOR */
@@ -59,6 +60,10 @@ font-size:clamp(1rem,3.8vw,1.1rem);
 margin:15px 0;
 color:var(--cyan);
 font-weight:700;
+min-height:1.5em;
+white-space:nowrap;
+font-variant-numeric:tabular-nums;
+overflow-anchor:none;
 }
 
 /* INFO */
