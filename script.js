@@ -1,8 +1,8 @@
-// Música
+// 🎵 Música automática
 const music = document.getElementById("bgMusic");
 document.addEventListener("click",()=>{music.play().catch(()=>{});},{once:true});
 
-// Cuenta regresiva
+// 🎬 Cuenta regresiva
 const eventDate = new Date("March 15, 2026 16:00:00").getTime();
 const countdown = document.getElementById("countdown");
 
@@ -17,34 +17,40 @@ const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
 countdown.innerHTML = `⏳ Faltan ${days} días ${hours} hs ${minutes} min`;
 },1000);
 
-// Burbujas profesionales
+// 🌊 OLAS dinámicas tipo película
+const body = document.body;
+body.insertAdjacentHTML("beforeend", `
+<div class="waves"></div>
+`);
+
+// 🫧 Burbujas 3D
 const bubbleContainer = document.querySelector('.bubbles');
-for(let i=0;i<20;i++){
+for(let i=0;i<30;i++){
 let bubble=document.createElement('span');
-let size=Math.random()*20+10;
+let size=Math.random()*25+10;
 bubble.style.width=size+"px";
 bubble.style.height=size+"px";
 bubble.style.left=Math.random()*100+"%";
-bubble.style.animationDuration=(Math.random()*5+5)+"s";
+bubble.style.animationDuration=(Math.random()*6+6)+"s";
 bubbleContainer.appendChild(bubble);
 }
 
-// Globos organizados
+// 🎈 Globos organizados
 const balloonContainer = document.querySelector('.balloons');
-for(let i=0;i<8;i++){
+for(let i=0;i<10;i++){
 let balloon=document.createElement('span');
-balloon.style.left=(10 + i*10)+"%";
+balloon.style.left=(5 + i*9)+"%";
 balloon.style.background=["#FFD700","#FF4D4D","#00E1FF","#7CFF00"][i%4];
-balloon.style.animationDuration=(Math.random()*4+6)+"s";
+balloon.style.animationDuration=(Math.random()*4+7)+"s";
 balloonContainer.appendChild(balloon);
 }
 
-// Links
+// 🔗 LINKS
 const calendarLink="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
 
 const mapsLink="https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires";
 
-// Formulario
+// 📝 FORMULARIO + ENVÍO A GOOGLE FORMS
 document.getElementById("inviteForm").addEventListener("submit",function(e){
 e.preventDefault();
 
@@ -58,11 +64,27 @@ const thankYou=document.getElementById("thankYou");
 
 submarine.classList.add("dive");
 
-setTimeout(()=>{
-thankYou.innerHTML=`✨ Gracias ${nombre} ✨<br>Nos alegra que seas parte de este momento tan especial 💛`;
-thankYou.classList.add("show");
-},1000);
+// 🔥 ENVÍO REAL A TU GOOGLE FORMS
+const formData=new URLSearchParams();
+formData.append("entry.810720251",nombre);
+formData.append("entry.1257370811",apellido);
+formData.append("entry.517323634",tipo);
+formData.append("entry.346124039",mensajeExtra);
 
+fetch("https://docs.google.com/forms/d/e/1FAIpQLSfLxa7HQTb9wvG21ety1IHTsXLxhl7lnH1qUr2MiTr-rROD0g/formResponse",{
+method:"POST",
+mode:"no-cors",
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+body:formData.toString()
+});
+
+// 🎬 Animación estilo Pixar
+setTimeout(()=>{
+thankYou.innerHTML=`✨ Gracias ${nombre} ✨<br><br>Nos emociona que seas parte de este momento tan especial 💛`;
+thankYou.classList.add("show");
+},1200);
+
+// 📲 WhatsApp profesional
 setTimeout(()=>{
 
 const mensaje=

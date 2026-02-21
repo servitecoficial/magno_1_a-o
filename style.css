@@ -129,3 +129,27 @@ animation:floatUp linear infinite;
 @keyframes floatUp{
 to{transform:translateY(-130vh);}
 }
+
+.waves{
+position:fixed;
+bottom:0;
+left:0;
+width:200%;
+height:200px;
+background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.2),transparent 70%);
+animation:waveMove 8s linear infinite;
+z-index:1;
+}
+
+@keyframes waveMove{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+body{
+perspective:1000px;
+}
+
+.submarine{
+transform-style:preserve-3d;
+}
