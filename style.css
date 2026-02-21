@@ -4,15 +4,21 @@ font-family:'Fredoka',sans-serif;
 background:linear-gradient(to bottom,#001f3f,#002b5c,#001f3f);
 color:white;
 text-align:center;
-overflow:hidden;
+overflow-x:hidden; /* SOLO ocultamos horizontal */
+min-height:100vh;
+position:relative;
 }
 
+/* CONTENEDOR */
 .container{
 padding:20px;
 position:relative;
-z-index:2;
+z-index:5;
+max-width:500px;
+margin:auto;
 }
 
+/* TITULO */
 .title{
 font-family:'Luckiest Guy',cursive;
 font-size:2rem;
@@ -21,34 +27,44 @@ margin-top:20px;
 letter-spacing:2px;
 }
 
+/* COUNTDOWN */
 .countdown{
-font-size:1.4rem;
+font-size:1.2rem;
 margin:15px 0;
 color:#00E1FF;
 font-weight:bold;
 }
 
+/* INFO */
 .info{
 margin:20px 0;
 line-height:1.6;
 }
 
+/* SUBMARINO */
 .submarine{
-width:200px;
+width:180px;
 transition:2.5s ease-in-out;
+animation:floatSub 4s ease-in-out infinite;
+}
+
+@keyframes floatSub{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
 }
 
 .submarine.dive{
-transform:translateY(400px) scale(0.8);
+transform:translateY(500px) scale(0.8);
 opacity:0;
 }
 
+/* FORMULARIO */
 .form{
 display:flex;
 flex-direction:column;
 gap:12px;
-max-width:320px;
-margin:auto;
+max-width:350px;
+margin:30px auto;
 }
 
 input,select,textarea{
@@ -56,8 +72,15 @@ padding:12px;
 border-radius:12px;
 border:none;
 font-size:1rem;
+outline:none;
 }
 
+textarea{
+resize:none;
+height:80px;
+}
+
+/* BOTONES */
 .btn{
 padding:14px;
 border:none;
@@ -84,15 +107,16 @@ text-decoration:none;
 font-weight:bold;
 }
 
+/* MENSAJE FINAL */
 .thankYou{
 position:fixed;
-bottom:-250px;
+bottom:-300px;
 left:50%;
 transform:translateX(-50%);
 background:rgba(0,0,80,0.95);
 padding:30px;
 border-radius:25px;
-font-size:1.2rem;
+font-size:1.1rem;
 color:#FFD700;
 transition:1.5s;
 z-index:999;
@@ -100,23 +124,46 @@ max-width:90%;
 }
 
 .thankYou.show{
-bottom:35%;
+bottom:30%;
 }
 
-/* Burbujas */
+/* BURBUJAS */
+.bubbles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+pointer-events:none;
+z-index:1;
+}
+
 .bubbles span{
 position:absolute;
-bottom:-100px;
+bottom:-120px;
 background:rgba(255,255,255,0.4);
 border-radius:50%;
 animation:rise linear infinite;
 }
 
 @keyframes rise{
-to{transform:translateY(-120vh);opacity:0;}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
 }
 
-/* Globos */
+/* GLOBOS */
+.balloons{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+pointer-events:none;
+z-index:1;
+}
+
 .balloons span{
 position:absolute;
 bottom:-150px;
@@ -127,29 +174,34 @@ animation:floatUp linear infinite;
 }
 
 @keyframes floatUp{
-to{transform:translateY(-130vh);}
+to{
+transform:translateY(-130vh);
+}
 }
 
+/* OLAS REALES */
 .waves{
 position:fixed;
 bottom:0;
 left:0;
 width:200%;
-height:200px;
-background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.2),transparent 70%);
-animation:waveMove 8s linear infinite;
-z-index:1;
+height:180px;
+background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.15),transparent 70%);
+animation:waveMove 12s linear infinite;
+z-index:2;
 }
 
 @keyframes waveMove{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+0%{transform:translateX(0)}
+100%{transform:translateX(-50%)}
 }
 
-body{
-perspective:1000px;
+/* RESPONSIVE */
+@media(max-width:480px){
+.title{
+font-size:1.6rem;
 }
-
 .submarine{
-transform-style:preserve-3d;
+width:150px;
+}
 }
