@@ -1,28 +1,31 @@
-/* RESET SEGURO */
+/* RESET PROFESIONAL */
 *{
 box-sizing:border-box;
 margin:0;
 padding:0;
 }
 
-/* BODY */
+html{
+height:auto;
+scroll-behavior:smooth;
+}
+
 body{
 font-family:'Fredoka',sans-serif;
 background:linear-gradient(to bottom,#001f3f,#002b5c,#001f3f);
 color:white;
 text-align:center;
 overflow-x:hidden;
-min-height:100dvh; /* SOLUCIÓN MOBILE REAL */
 position:relative;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR */
 .container{
-padding:20px;
-position:relative;
-z-index:5;
+padding:20px 20px 80px 20px;
 max-width:500px;
 margin:auto;
+position:relative;
+z-index:5;
 }
 
 /* TITULO */
@@ -36,7 +39,7 @@ letter-spacing:2px;
 
 /* COUNTDOWN */
 .countdown{
-font-size:1.2rem;
+font-size:1.1rem;
 margin:15px 0;
 color:#00E1FF;
 font-weight:bold;
@@ -50,18 +53,19 @@ line-height:1.6;
 
 /* SUBMARINO */
 .submarine{
-width:180px;
-transition:2.5s ease-in-out;
+width:170px;
+transition:2.5s ease;
 animation:floatSub 4s ease-in-out infinite;
+will-change:transform;
 }
 
 @keyframes floatSub{
 0%,100%{transform:translateY(0)}
-50%{transform:translateY(-15px)}
+50%{transform:translateY(-12px)}
 }
 
 .submarine.dive{
-transform:translateY(600px) scale(0.8);
+transform:translateY(400px) scale(0.8);
 opacity:0;
 }
 
@@ -72,7 +76,6 @@ flex-direction:column;
 gap:12px;
 max-width:350px;
 margin:30px auto;
-padding-bottom:60px; /* espacio extra para scroll */
 }
 
 input,select,textarea{
@@ -99,9 +102,8 @@ cursor:pointer;
 transition:0.3s;
 }
 
-.btn:hover{
-background:#ffc400;
-transform:scale(1.05);
+.btn:active{
+transform:scale(0.97);
 }
 
 .btn-secondary{
@@ -120,24 +122,33 @@ font-weight:bold;
 position:fixed;
 left:50%;
 transform:translateX(-50%);
-bottom:-350px;
+bottom:-300px;
 background:rgba(0,0,80,0.95);
-padding:30px;
-border-radius:25px;
-font-size:1.1rem;
+padding:25px;
+border-radius:20px;
+font-size:1rem;
 color:#FFD700;
-transition:1.5s;
+transition:1s ease;
 z-index:9999;
 max-width:90%;
 }
 
 .thankYou.show{
-bottom:25%;
+bottom:20%;
 }
 
-/* BURBUJAS */
-.bubbles{
-position:fixed;
+/* ========================= */
+/* ANIMACIONES DECORATIVAS */
+/* ========================= */
+
+/* IMPORTANTE:
+   ahora son ABSOLUTE dentro del body
+   NO fixed full height
+*/
+
+.bubbles,
+.balloons{
+position:absolute;
 top:0;
 left:0;
 width:100%;
@@ -147,33 +158,28 @@ z-index:1;
 overflow:hidden;
 }
 
+/* BURBUJAS */
 .bubbles span{
 position:absolute;
 bottom:-120px;
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.35);
 border-radius:50%;
 animation:rise linear infinite;
+will-change:transform;
 }
 
 @keyframes rise{
+from{
+transform:translateY(0);
+opacity:1;
+}
 to{
-transform:translateY(-130vh);
+transform:translateY(-1200px);
 opacity:0;
 }
 }
 
 /* GLOBOS */
-.balloons{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:1;
-overflow:hidden;
-}
-
 .balloons span{
 position:absolute;
 bottom:-150px;
@@ -181,42 +187,42 @@ width:45px;
 height:60px;
 border-radius:50%;
 animation:floatUp linear infinite;
+will-change:transform;
 }
 
 @keyframes floatUp{
+from{
+transform:translateY(0);
+}
 to{
-transform:translateY(-140vh);
+transform:translateY(-1400px);
 }
 }
 
-/* OLAS SUAVES */
+/* OLAS */
 .waves{
-position:fixed;
+position:absolute;
 bottom:0;
 left:0;
 width:200%;
 height:180px;
 background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0.12),transparent 70%);
-animation:waveMove 14s linear infinite;
-z-index:2;
+animation:waveMove 15s linear infinite;
 pointer-events:none;
+z-index:2;
 }
 
 @keyframes waveMove{
-0%{transform:translateX(0)}
-100%{transform:translateX(-50%)}
+from{transform:translateX(0)}
+to{transform:translateX(-50%)}
 }
 
-/* MOBILE EXTRA SAFE */
-html{
-scroll-behavior:smooth;
-}
-
+/* RESPONSIVE */
 @media(max-width:480px){
 .title{
 font-size:1.6rem;
 }
 .submarine{
-width:150px;
+width:140px;
 }
 }
