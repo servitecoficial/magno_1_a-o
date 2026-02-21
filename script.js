@@ -1,4 +1,4 @@
-// Musica automatica
+﻿// Musica automatica
 const music = document.getElementById("bgMusic");
 document.addEventListener(
   "click",
@@ -66,9 +66,33 @@ if (balloonContainer) {
 }
 
 const calendarLink =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleanos+N1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+N°1+Magno&dates=20260315T190000Z/20260315T220000Z&location=Calle+Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires&ctz=America/Argentina/Buenos_Aires";
 
 const mapsLink = "https://www.google.com/maps/place/Costa+Rica+2135,+Libertad,+Merlo,+Buenos+Aires";
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function buildWhatsappMessage(nombre, apellido, tipo, mensajeExtra) {
+  return (
+    `*🎉 CONFIRMACIÓN CUMPLEAÑOS DE MAGNO 🎉*\n\n` +
+    `👤 *Nombre:* ${nombre}\n` +
+    `👤 *Apellido:* ${apellido}\n` +
+    `🎈 *Invitado:* ${tipo}\n\n` +
+    `💌 *Dedicatoria:* ${mensajeExtra || "-"}\n\n` +
+    `✨ *En este link vas a poder agendar mi cumple en tu calendario:*\n` +
+    `${calendarLink}\n\n` +
+    `📍 *Acá está el link para que puedas encontrar la dirección de mi casa más rápido y puedas llegar a festejar con nosotros:*\n` +
+    `${mapsLink}\n\n` +
+    `💛 *Quiero que seas parte de este momento tan especial para mis papis como para mí. ¡TE ESPERO!* 🎂🎊`
+  );
+}
 
 // Formulario
 const inviteForm = document.getElementById("inviteForm");
@@ -101,22 +125,20 @@ if (inviteForm) {
 
     setTimeout(() => {
       if (!thankYou) return;
-      thankYou.innerHTML = `Gracias ${nombre}.<br><br>Nos emociona que seas parte de este momento tan especial.`;
+
+      const safeNombre = escapeHtml(nombre || "invitado/a");
+      thankYou.innerHTML =
+        `<div class="thankYouVisual">` +
+        `<img src="submarino.png" alt="Submarino" class="thankYouSubmarine">` +
+        `<div class="miniWaves" aria-hidden="true"></div>` +
+        `</div>` +
+        `<div class="thankYouText"><strong>Gracias ${safeNombre}.</strong><br><br>Nos emociona que seas parte de este momento tan especial.</div>`;
       thankYou.classList.add("show");
+
+      setTimeout(() => {
+        const mensaje = buildWhatsappMessage(nombre, apellido, tipo, mensajeExtra);
+        window.location.href = `https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
+      }, 4000);
     }, 1200);
-
-    setTimeout(() => {
-      const mensaje =
-        `*CONFIRMACION CUMPLEANOS DE MAGNO*\n\n` +
-        `Nombre: ${nombre}\n` +
-        `Apellido: ${apellido}\n` +
-        `Invitado: ${tipo}\n\n` +
-        `${mensajeExtra}\n\n` +
-        `Agenda: ${calendarLink}\n\n` +
-        `Direccion: ${mapsLink}\n\n` +
-        `Te esperamos.`;
-
-      window.location.href = `https://wa.me/5491161892818?text=${encodeURIComponent(mensaje)}`;
-    }, 4500);
   });
 }
